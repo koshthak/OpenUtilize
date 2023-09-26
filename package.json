@@ -1,5 +1,7 @@
 {
-  "private": true,
+  "private": false,
+  "name": "open-utilize",
+  "packageManager": "bun@1.0.3",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -12,8 +14,6 @@
     "tsconfig": "*",
     "turbo": "latest"
   },
-  "name": "open-utilize",
-  "packageManager": "bun@1.0.0",
   "workspaces": [
     "apps/*",
     "packages/*"
