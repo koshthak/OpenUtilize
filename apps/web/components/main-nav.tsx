@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import Image from "next/image";
 
 import { MainNavItem } from "@/types";
 import { siteConfig } from "@/config/site";
@@ -21,7 +22,7 @@ export function MainNav({ items, children }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        {/* <logo /> */}
+        <Image src="/logo-no-txt.png" className="dark:invert-[80%]" width={60} height={60} alt="logo" />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
