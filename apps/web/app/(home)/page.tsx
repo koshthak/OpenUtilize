@@ -55,8 +55,8 @@ export default function HomePage() {
           </p>
         </div>
         <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
-          {features.map((d) => (
-            <Feature heading={d.heading} description={d.description} />
+          {features.map((d, i) => (
+            <Feature key={i} heading={d.heading} description={d.description} />
           ))}
         </div>
       </section>

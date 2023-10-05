@@ -1,5 +1,6 @@
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
+import { edenFetch } from "@open-utilize/eden";
 
 import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
@@ -7,6 +8,10 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LayoutProps } from "@/types";
+
+edenFetch("/", { method: "GET" }).then((res) =>
+  console.log("res:===>", res.data)
+);
 
 const fontSans = FontSans({
   subsets: ["latin"],

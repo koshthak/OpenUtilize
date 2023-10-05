@@ -1,0 +1,15 @@
+{
+  "name": "@open-utilize/eden",
+  "module": "index.ts",
+  "type": "module",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@elysiajs/eden": "^0.7.4"
+  },
+  "devDependencies": {
+    "@open-utilize/api": "workspace:*",
+    "bun-types": "latest",
+    "elysia": "^0.7.15"
+  }
+}
