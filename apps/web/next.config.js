@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  transpilePackages: ['@open-utilize/eden'],
+}
 
 module.exports = nextConfig

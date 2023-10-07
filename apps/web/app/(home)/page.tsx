@@ -2,16 +2,27 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
-import Feature, { FeatureProps } from "./feature";
 
-const features: FeatureProps[] = [
+const features = [
   {
     heading: "PDF Tools",
     description: "PDF merging and splitting",
+    path: "/pdf",
   },
   {
     heading: "Image Editing",
     description: "Image resizing and cropping",
+    path: "/image",
+  },
+  {
+    heading: "Qr",
+    description: "generate QR",
+    path: "/qr",
+  },
+  {
+    heading: "Dev tools",
+    description: "uuid, qr",
+    path: "/dev",
   },
 ];
 
@@ -56,7 +67,42 @@ export default function HomePage() {
         </div>
         <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
           {features.map((d, i) => (
-            <Feature key={i} heading={d.heading} description={d.description} />
+            <div
+              key={i}
+              className="relative overflow-hidden rounded-lg border bg-background p-2"
+            >
+              <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
+                <div className="space-y-2">
+                  <h3 className="font-bold">{d.heading}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {d.description}
+                  </p>
+                  <a
+                    href={d.path}
+                    className="inline-flex items-center justify-center p-5 text-base font-medium text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    <span className="w-full">
+                      Navigate
+                    </span>
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
