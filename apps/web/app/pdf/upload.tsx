@@ -1,12 +1,11 @@
 "use client";
 
 import { ChangeEvent } from "react";
-import { edenTreaty, edenFetch } from "@open-utilize/eden";
+// import { edenTreaty, edenFetch } from "@open-utilize/eden";
 
 export function Upload() {
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    console.log(files);
     if (!files) {
       return;
     }
@@ -18,7 +17,13 @@ export function Upload() {
       }
       formData.append("files", file);
     }
-    const { data, error } = await edenTreaty.pdf.post({ files });
+    const data = await fetch("http://localhost:5000/pdf", {
+      method: "POST",
+      body: formData,
+    });
+    console.log(data);
+    // !filename missing bug PR (eden): https://github.com/elysiajs/eden/pull/26
+    // const { data, error } = await edenTreaty.pdf.post({ files });
   };
 
   return (

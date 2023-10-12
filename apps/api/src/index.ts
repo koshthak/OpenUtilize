@@ -7,29 +7,39 @@ const app = new Elysia()
   .use(swagger())
   .use(logger({ stream: console }))
   .use(cors())
-  .onError((error) => {
-    console.log(error);
-    return new Response("Some Error Happened", { status: 500 });
+  .onError(({ set }) => {
+    set.status = 500;
+    return { message: "Some Error Happened" };
   })
   .get("/", (ctx) => {
     ctx.log.info(ctx.request, "Request");
     return "Hello Elysia";
   })
-  .get("/abc", (ctx) => {
-    ctx.log.info(ctx.request, "Request");
-    return { message: "Hello Elysia" };
-  })
   .post(
     "/pdf",
-    async ({ body }) => {
+    async ({ body, set }) => {
       console.log(body);
       for (let index = 0; index < body.files.length; index++) {
         const file = body.files[index];
-        // filename missing bug PR (eden): https://github.com/elysiajs/eden/pull/26
-        // filetype missing bug (bun): https://github.com/oven-sh/bun/issues/6012
-        console.log("file.name: ", file.name);
-        console.log("file.size: ", file.size);
-        console.log("file.type: ", file.type);
+        if (file.type !== "application/pdf") {
+          set.status = 403;
+          return { message: "Must upload a pdf file." };
+        }
+        await Bun.write(file.name || "test.pdf", file);
+
+        const proc = Bun.spawn(
+          ["convert", file.name || "test.pdf", `${file.name || "test"}.png`],
+          { stderr: "pipe" }
+        );
+        const errors: string = await Bun.readableStreamToText(proc.stderr);
+        if (errors) {
+          throw new Error();
+        }
+
+        const text = await new Response(proc.stdout).text();
+        console.log(text);
+
+        console.log(proc.pid);
       }
       return { message: "success got the file" };
     },
