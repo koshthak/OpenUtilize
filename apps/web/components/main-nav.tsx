@@ -12,17 +12,22 @@ import { MobileNav } from "@/components/mobile-nav";
 
 interface MainNavProps {
   items?: MainNavItem[];
-  children?: React.ReactNode;
 }
 
-export function MainNav({ items, children }: MainNavProps) {
+export function MainNav({ items }: MainNavProps) {
   const segment = useSelectedLayoutSegment();
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
 
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Image src="/logo-no-txt.png" className="dark:invert-[80%]" width={60} height={60} alt="logo" />
+        <Image
+          src="/logo-no-txt.png"
+          className="dark:invert-[80%]"
+          width={60}
+          height={60}
+          alt="logo"
+        />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
@@ -53,9 +58,7 @@ export function MainNav({ items, children }: MainNavProps) {
         {/* {showMobileMenu ? <Icons.close /> : <Icons.logo />} */}
         <span className="font-bold">Menu</span>
       </button>
-      {showMobileMenu && items && (
-        <MobileNav items={items}>{children}</MobileNav>
-      )}
+      {showMobileMenu && items && <MobileNav items={items} />}
     </div>
   );
 }

@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer";
 
 const navItems = [
   {
-    title: "Features",
-    href: "/#features",
+    title: "Edit pdf",
+    href: "/pdf#edit",
   },
 ];
 

@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils";
 
 interface MobileNavProps {
   items: MainNavItem[];
-  children?: React.ReactNode;
 }
 
-export function MobileNav({ items, children }: MobileNavProps) {
+export function MobileNav({ items }: MobileNavProps) {
   return (
     <div
       className={cn(
@@ -36,7 +35,6 @@ export function MobileNav({ items, children }: MobileNavProps) {
             </Link>
           ))}
         </nav>
-        {children}
       </div>
     </div>
   );
