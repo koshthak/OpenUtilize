@@ -46,7 +46,7 @@ export function QRUrl() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="url" {...field} />
+                <Input placeholder="http://" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.

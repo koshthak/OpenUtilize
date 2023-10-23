@@ -1,6 +1,9 @@
+"use client";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import QRCode from "react-qr-code";
 
 import { QRUrl } from "./url";
 
@@ -16,8 +19,8 @@ const tabs = [
 export default function QRPage() {
   return (
     <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-      <div className="container">
-        <Card>
+      <div className="container grid grid-cols-4 gap-2">
+        <Card className="col-span-3">
           <Tabs defaultValue={tabs[0].id}>
             <TabsList className="h-full w-full rounded-b-none grid grid-cols-3">
               {tabs.map((d) => (
@@ -35,6 +38,11 @@ export default function QRPage() {
           <CardFooter className="flex justify-end">
             <Button>Generate</Button>
           </CardFooter>
+        </Card>
+        <Card>
+          <CardContent>
+            <QRCode value="hey" />
+          </CardContent>
         </Card>
       </div>
     </section>
