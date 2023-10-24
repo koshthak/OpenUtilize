@@ -1,22 +1,52 @@
 "use client";
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import QRCode from "react-qr-code";
 
 import { QRUrl } from "./url";
 
+export type FunctionProps = {
+  setQrValue: Dispatch<SetStateAction<string>>;
+};
+
 const tabs = [
-  { id: "url", label: "URL", component: <QRUrl /> },
-  { id: "v-card", label: "V Card" },
-  { id: "text", label: "Text" },
-  { id: "e-mail", label: "E-Mail" },
-  { id: "sms", label: "Sms" },
-  { id: "wifi", label: "Wifi" },
+  {
+    id: "url",
+    label: "URL",
+    component: (props: FunctionProps) => <QRUrl {...props} />,
+  },
+  {
+    id: "v-card",
+    label: "V Card",
+    component: (props: FunctionProps) => <QRUrl {...props} />,
+  },
+  {
+    id: "text",
+    label: "Text",
+    component: (props: FunctionProps) => <QRUrl {...props} />,
+  },
+  {
+    id: "e-mail",
+    label: "E-Mail",
+    component: (props: FunctionProps) => <QRUrl {...props} />,
+  },
+  {
+    id: "sms",
+    label: "Sms",
+    component: (props: FunctionProps) => <QRUrl {...props} />,
+  },
+  {
+    id: "wifi",
+    label: "Wifi",
+    component: (props: FunctionProps) => <QRUrl {...props} />,
+  },
 ];
 
 export default function QRPage() {
+  const [qrValue, setQrValue] = useState("");
+
   return (
     <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
       <div className="container grid grid-cols-4 gap-2">
@@ -31,17 +61,16 @@ export default function QRPage() {
             </TabsList>
             <CardContent>
               {tabs.map((d) => (
-                <TabsContent value={d.id}>{d.component || d.label}</TabsContent>
+                <TabsContent value={d.id}>
+                  {d.component({ setQrValue }) || d.label}
+                </TabsContent>
               ))}
             </CardContent>
           </Tabs>
-          <CardFooter className="flex justify-end">
-            <Button>Generate</Button>
-          </CardFooter>
         </Card>
-        <Card>
-          <CardContent>
-            <QRCode value="hey" />
+        <Card className="flex items-center justify-center">
+          <CardContent className="bg-white p-4">
+            <QRCode value={qrValue} />
           </CardContent>
         </Card>
       </div>

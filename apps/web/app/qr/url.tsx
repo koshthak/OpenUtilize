@@ -15,13 +15,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { FunctionProps } from "./page";
 
 const formSchema = z.object({
   url: z.string().url({ message: "should be a valid url" }),
 });
 
-export function QRUrl() {
-  // 1. Define your form.
+export function QRUrl({ setQrValue }: FunctionProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,11 +29,8 @@ export function QRUrl() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    setQrValue(values.url);
   }
 
   return (
