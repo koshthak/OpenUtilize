@@ -77,13 +77,11 @@ export default function HomePage() {
                   <p className="text-sm text-muted-foreground">
                     {d.description}
                   </p>
-                  <a
+                  <Link
                     href={d.path}
                     className="inline-flex items-center justify-center p-5 text-base font-medium text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                   >
-                    <span className="w-full">
-                      Navigate
-                    </span>
+                    <span className="w-full">Navigate</span>
                     <svg
                       className="w-4 h-4 ml-2"
                       aria-hidden="true"
@@ -99,7 +97,7 @@ export default function HomePage() {
                         d="M1 5h12m0 0L9 1m4 4L9 9"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

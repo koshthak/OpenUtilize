@@ -1,5 +1,4 @@
 import { LayoutProps } from "@/types";
-import { headers } from "next/headers";
 import { MainNav } from "@/components/main-nav";
 import { Footer } from "@/components/footer";
 
@@ -15,14 +14,6 @@ const navItems = [
 ];
 
 export default function QRLayout({ children }: LayoutProps) {
-  const headersList = headers();
-  const activePath = headersList.get("x-invoke-path");
-  const activeUrl = headersList.get("referer");
-  const activeHost = headersList.get("host");
-  console.log(headersList);
-  console.log('activePath', activePath);
-  console.log('activeUrl', activeUrl);
-  console.log('activeHost', activeHost);
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container z-40 bg-background">

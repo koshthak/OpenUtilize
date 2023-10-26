@@ -1,9 +1,9 @@
 "use client";
 
 import * as z from "zod";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,22 +15,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FunctionProps } from "./page";
+import { QrContext } from "./wrapper";
 
 const formSchema = z.object({
-  url: z.string().url({ message: "should be a valid url" }),
+  text: z.string(),
 });
 
-export function QRUrl({ setQrValue }: FunctionProps) {
+export function Text() {
+  const { setQrValue } = useContext(QrContext);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      url: "",
+      text: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setQrValue(values.url);
+    setQrValue(values.text);
   }
 
   return (
@@ -38,16 +40,13 @@ export function QRUrl({ setQrValue }: FunctionProps) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="url"
+          name="text"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Text</FormLabel>
               <FormControl>
-                <Input placeholder="http://" {...field} />
+                <Input placeholder="Text" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
