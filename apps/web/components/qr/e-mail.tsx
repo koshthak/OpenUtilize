@@ -35,7 +35,8 @@ export function Email() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setQrValue(values.email);
+    const { email, subject, message } = values;
+    setQrValue(`mailto:${email}?subject=${subject}&body=${message}`);
   }
 
   return (

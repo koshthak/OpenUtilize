@@ -29,7 +29,7 @@ export function Sms() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setQrValue(`sms:${values.number}:${values.message}`);
+    setQrValue(`SMSTO:${values.number}:${values.message}`);
   }
 
   return (

@@ -19,7 +19,7 @@ import { QrContext } from "./wrapper";
 const formSchema = z.object({
   ssid: z.string(),
   password: z.string(),
-  encryption: z.string(),
+  encryption: z.string(), //WEP,WPA, WPA2-EAP,(nopass || '')
   hidden: z.boolean(),
 });
 
