@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent } from "react";
-// import { edenTreaty, edenFetch } from "@open-utilize/eden";
+import { edenTreaty, edenFetch } from "@open-utilize/eden";
 
 export function Upload() {
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,13 +17,8 @@ export function Upload() {
       }
       formData.append("files", file);
     }
-    const data = await fetch("http://localhost:5000/pdf", {
-      method: "POST",
-      body: formData,
-    });
+    const { data, error } = await edenTreaty.pdf.post({ files });
     console.log(data);
-    // !filename missing bug PR (eden): https://github.com/elysiajs/eden/pull/26
-    // const { data, error } = await edenTreaty.pdf.post({ files });
   };
 
   return (
