@@ -10,6 +10,6 @@
   "devDependencies": {
     "@open-utilize/api": "workspace:*",
     "bun-types": "latest",
-    "elysia": "^0.7.15"
+    "elysia": "^0.7.30"
   }
 }
